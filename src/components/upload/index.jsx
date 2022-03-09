@@ -2,7 +2,7 @@ import Dropzone from "react-dropzone";
 
 import * as Styled from "./styles";
 
-const Upload = () => {
+const Upload = ({ onUpload }) => {
   const renderDragMessage = (isDragActive, isDragReject) => {
     if (!isDragActive) {
       return (
@@ -26,7 +26,7 @@ const Upload = () => {
   };
 
   return (
-    <Dropzone accept="image/*" onDropAccepted={() => {}}>
+    <Dropzone accept="image/*" onDropAccepted={onUpload}>
       {({ getRootProps, getInputProps, isDragActive, isDragReject }) => (
         <Styled.DropContainer
           {...getRootProps()}
