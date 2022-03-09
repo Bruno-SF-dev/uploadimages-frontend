@@ -40,8 +40,8 @@ export const FileInfo = styled.div`
 `;
 
 export const Preview = styled.div`
-  width: 36px;
-  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
   border-radius: 5px;
   background-image: url(${({ src }) => src});
   background-repeat: no-repeat;

@@ -12,6 +12,32 @@ import { FileList } from "./components/FileList";
 function App() {
   const [uploadedFiles, setUploadedFiles] = useState([]);
 
+  useEffect(() => {
+    const getPosts = async () => {
+      const response = await api.get("posts");
+
+      const filesFormated = response.data.map((file) => ({
+        id: file._id,
+        name: file.name,
+        readableSize: filesize(file.size),
+        preview: file.url,
+        uploaded: true,
+        url: file.url,
+      }));
+
+      setUploadedFiles(filesFormated);
+    };
+
+    getPosts();
+  }, []);
+
+  // limpar o cache do browser
+  useEffect(() => {
+    return () => {
+      uploadedFiles.forEach((file) => URL.revokeObjectURL(file.preview));
+    };
+  }, [uploadedFiles]);
+
   const handleUploads = (files) => {
     const filesReceived = files.map((file) => ({
       file,
@@ -25,7 +51,7 @@ function App() {
       url: null,
     }));
 
-    setUploadedFiles([...uploadedFiles, ...filesReceived]);
+    setUploadedFiles((prevState) => [...prevState, ...filesReceived]);
     filesReceived.forEach(processUpload);
   };
 
@@ -61,8 +87,8 @@ function App() {
   };
 
   const updateFile = (id, data) => {
-    setUploadedFiles((state) =>
-      state.map((uploadedFile) => {
+    setUploadedFiles((prevState) =>
+      prevState.map((uploadedFile) => {
         if (id === uploadedFile.id) {
           return { ...uploadedFile, ...data };
         }
