@@ -72,6 +72,12 @@ function App() {
     );
   };
 
+  const handleDelete = async (id) => {
+    await api.delete(`posts/${id}`);
+
+    setUploadedFiles((prevState) => prevState.filter((file) => file.id !== id));
+  };
+
   return (
     <>
       <GlobalStyles />

@@ -3,7 +3,7 @@ import * as Styled from "./styles";
 import { CircularProgressbar } from "react-circular-progressbar";
 import { MdCheckCircle, MdError, MdLink } from "react-icons/md";
 
-const FileList = ({ files }) => {
+const FileList = ({ files, onDelete }) => {
   return (
     <Styled.Container>
       {files.map((file) => (
@@ -14,7 +14,9 @@ const FileList = ({ files }) => {
               <strong>{file.name}</strong>
               <span>
                 {file.readableSize}
-                {file.uploaded && <button onClick={() => {}}>Excluir</button>}
+                {file.uploaded && (
+                  <button onClick={() => onDelete(file.id)}>Excluir</button>
+                )}
               </span>
             </div>
           </Styled.FileInfo>
