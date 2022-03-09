@@ -2,6 +2,7 @@ import { GlobalStyles } from "./styles/global";
 import * as Styled from "./styles";
 
 import { Upload } from "./components/upload";
+import { FileList } from "./components/FileList";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Styled.Container>
         <Styled.Content>
           <Upload />
+          <FileList />
         </Styled.Content>
       </Styled.Container>
     </>
