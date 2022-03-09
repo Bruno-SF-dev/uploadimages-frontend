@@ -84,7 +84,9 @@ function App() {
       <Styled.Container>
         <Styled.Content>
           <Upload onUpload={handleUploads} />
-          {uploadedFiles.length > 0 && <FileList files={uploadedFiles} />}
+          {uploadedFiles.length > 0 && (
+            <FileList files={uploadedFiles} onDelete={handleDelete} />
+          )}
         </Styled.Content>
       </Styled.Container>
     </>
