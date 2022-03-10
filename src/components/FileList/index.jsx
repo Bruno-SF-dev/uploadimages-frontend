@@ -1,7 +1,7 @@
 import * as Styled from "./styles";
 
-import { CircularProgressbar } from "react-circular-progressbar";
 import { MdCheckCircle, MdError, MdLink } from "react-icons/md";
+import { CircularProgressbar } from "react-circular-progressbar";
 
 const FileList = ({ files, onDelete }) => {
   return (
