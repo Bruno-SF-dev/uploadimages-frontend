@@ -26,7 +26,8 @@ const FileList = ({ files, onDelete }) => {
               <CircularProgressbar
                 styles={{
                   root: { width: 24 },
-                  path: { stroke: "#7159c1" },
+                  path: { stroke: "#82aaff" },
+                  trail: { stroke: "transparent" },
                 }}
                 strokeWidth={10}
                 value={file.progress}
@@ -34,11 +35,18 @@ const FileList = ({ files, onDelete }) => {
             )}
             {file.url && (
               <a href={file.url} target="_blank">
-                <MdLink style={{ marginRight: 8 }} size={24} color="#222" />
+                <MdLink
+                  style={{ marginRight: 8 }}
+                  size={24}
+                  color="#fafafade"
+                  name="link"
+                />
               </a>
             )}
-            {file.uploaded && <MdCheckCircle size={24} color="#78e5d5" />}
-            {file.error && <MdError size={24} color="#e57878" />}
+            {file.uploaded && (
+              <MdCheckCircle size={24} color="#03dac6" name="state" />
+            )}
+            {file.error && <MdError size={24} color="#f07178" name="state" />}
           </Styled.FileState>
         </li>
       ))}
